@@ -1,0 +1,25 @@
+Start typing to get a list of possible matches or press down to select
+
+<script type="text/javascript">
+(function($) {
+    AJS.$("#customfield_12282 option[value='-1']").remove(); //Removes the default value "None"
+    function convertMulti(id){
+        if (AJS.$('#'+id+"-textarea").length == 0){
+            new AJS.MultiSelect({
+                element: $("#"+id),
+                itemAttrDisplayed: "label",
+                errorMessage: AJS.params.multiselectComponentsError
+            });
+        }
+    }
+  
+    AJS.toInit(function(){ 
+        convertMulti("customfield_12282");
+    })
+  
+    JIRA.bind(JIRA.Events.NEW_CONTENT_ADDED, function (e, context) {
+        AJS.$("#customfield_12282 option[value='-1']").remove();
+        convertMulti("customfield_12282");
+    });
+})(AJS.$);
+</script>
