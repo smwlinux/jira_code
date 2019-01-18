@@ -1,3 +1,7 @@
+Enter text below in description of field:single-select list to behave like component/version (multiple choices possible).
+
+begin code:
+
 Start typing to get a list of possible matches or press down to select
 
 <script type="text/javascript">
