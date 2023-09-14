@@ -1,0 +1,20 @@
+Components are another one of those Project only concepts in Jira. If you need to bulk create components into another Jira Project, it's not an available trigger in Automation, 
+but here is a script to easily create them in a single project.  I can update to include multiple projects if needed.
+
+
+def accountId = 'USERNAME'
+def projKey = 'TLR2'
+def components = ['User Interface (UI)','Networking', 'Systems', 'Software', 'Hardware']
+def rest = '/rest/api/3/component'
+components.each { component ->
+    post(rest)
+    .header('Content-Type', 'application/json')
+    .body([
+          name: component,
+          project: projKey,
+          assigneeType: 'PROJECT_DEFAULT',
+          leadAccountId: accountId
+          ])
+          .asString()
+    logger.info ("Component '${component}' created.")
+}
